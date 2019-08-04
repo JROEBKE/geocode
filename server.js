@@ -1,32 +1,31 @@
 // load environment variables
 require('dotenv').config();
 
-// grab our dependencies
+// grab dependencies
 const express    = require('express');
   app            = express();
-  bodyParser     = require('body-parser');
-  expressLayouts = require('express-ejs-layouts');
   argv           = require('minimist')(process.argv.slice(2));
-  expressValidator = require('express-validator');
   helmet         = require('helmet'); //security validator
   swaggerJSDoc   = require('swagger-jsdoc'); //swagger API doc
-
+  basicAuth      = require('express-basic-auth');
 
 // configure our application ===================
 
 // tell express where to look for static assets
 app.use(express.static(__dirname + '/public'));
 
-// use body parser to grab info from a form
-app.use(bodyParser.urlencoded({ extended: true })); //true changed to false for validation test
-app.use(bodyParser.json());
-
-//Validation
-app.use(expressValidator());
+// activate basicAuth by fetching first username  & password from  env file and then check input vs. data
+const Password =  process.env.PASSWORD;
+const User =  process.env.USER;
+app.use(basicAuth({ authorizer: myAuthorizer, challenge: true } ))
+function myAuthorizer(username, password) {
+    const userMatches = basicAuth.safeCompare(username, User)
+    const passwordMatches = basicAuth.safeCompare(password, Password)
+    return userMatches & passwordMatches
+}
 
 //helmet security
 app.use(helmet())
-
 
 //Set var port = 8080 as default;
 var   port = process.env.PORT || 8080;

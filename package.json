@@ -10,14 +10,12 @@
     "url": "getintouchwithjonas@gmail.com"
   },
   "dependencies": {
-    "body-parser": "^1.18.1",
-    "minimist": "*",
     "dotenv": "^2.0.0",
-    "ejs": "^2.5.1",
     "express": "^4.16.2",
-    "express-ejs-layouts": "^2.2.0",
-    "express-validator": "^2.21.0",
+    "express-basic-auth": "^1.2.0",
+    "express-validator": "^6.1.1",
     "helmet": "^3.9.0",
+    "minimist": "*",
     "node-geocoder": "^3.23.0",
     "swagger-jsdoc": "^1.9.7",
     "swagger-ui": "^3.4.1"

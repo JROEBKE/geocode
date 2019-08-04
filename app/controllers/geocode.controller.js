@@ -42,9 +42,9 @@ async function getCoordinates(req, res) {
     });
     // here we are extracting coordinates out of response for first object
     var longitude = coordinates[0].longitude;
-    var altitude = coordinates[0].altitude;
+    var latitude = coordinates[0].latitude;
     console.log(longitude);
-    console.log(altitude);
+    console.log(latitude);
 
     //then do whatever you want with geocodes here, if do you not like synchronus approach like atop then you have to create chain of callbacks instead
 
